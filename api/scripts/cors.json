@@ -1,0 +1,18 @@
+{
+  "rules": [
+    {
+      "allowed": {
+        "origins": [
+          "https://bracuvault.me",
+          "https://www.bracuvault.me",
+          "http://localhost:3000",
+          "http://127.0.0.1:3000"
+        ],
+        "methods": ["GET", "HEAD"],
+        "headers": ["*"]
+      },
+      "exposeHeaders": ["Content-Length", "Content-Type", "Content-Range", "Accept-Ranges"],
+      "maxAgeSeconds": 86400
+    }
+  ]
+}

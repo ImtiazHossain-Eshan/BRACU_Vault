@@ -1,0 +1,17 @@
+{
+  "name": "bracu-vault",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Full-stack BRAC University CSE study archive deployed on Cloudflare Pages, Workers, D1, R2, and Clerk.",
+  "scripts": {
+    "dev:api": "npm --prefix api run dev",
+    "dev:landing": "npm --prefix landing run dev",
+    "build:landing": "npm --prefix landing run build",
+    "typecheck:api": "npm --prefix api run typecheck",
+    "check": "npm --prefix api run typecheck && npm --prefix landing run build"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
+

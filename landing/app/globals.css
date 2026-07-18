@@ -1,0 +1,376 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================= *
+ *  THEME TOKENS
+ *  Default (:root) = "Paper Intelligence" warm light theme.
+ *  .dark           = the original futuristic dark theme.
+ *  Color channels are space-separated RGB so Tailwind's /alpha works.
+ * ============================================================= */
+:root {
+  /* surfaces & ink */
+  --bg: 248 245 240; /* #F8F5F0 warm off-white */
+  --bg-2: 239 231 220; /* #EFE7DC light beige */
+  --fg: 58 46 34; /* #3A2E22 deep cocoa ink */
+
+  /* accent ramp (brand gradient: brown → cocoa) */
+  --accent: 160 122 74; /* #A07A4A */
+  --accent-2: 139 111 71; /* #8B6F47 soft brown */
+  --accent-3: 74 58 42; /* #4A3A2A dark cocoa */
+  --accent-4: 185 142 90; /* #B98E5A tan */
+  --highlight: 194 168 120; /* #C2A878 muted gold */
+
+  /* warm glass + soft shadows */
+  --glass-bg: rgba(255, 252, 247, 0.62);
+  --glass-border: rgba(74, 58, 42, 0.14);
+  --glass-strong-bg: rgba(252, 248, 242, 0.82);
+  --shadow-glow: 0 24px 60px -28px rgba(120, 90, 55, 0.45);
+  --shadow-soft: 0 18px 50px -30px rgba(74, 58, 42, 0.4);
+  --shadow-accent: 0 8px 30px -8px rgba(139, 111, 71, 0.45);
+  --shadow-accent-2: 0 8px 30px -8px rgba(194, 168, 120, 0.5);
+
+  /* atmosphere */
+  --grid-color: rgba(74, 58, 42, 0.05);
+  --ink-wash-1: radial-gradient(circle at 30% 30%, rgba(194, 168, 120, 0.55), transparent 60%);
+  --ink-wash-2: radial-gradient(circle at 70% 60%, rgba(139, 111, 71, 0.42), transparent 60%);
+  --vignette: radial-gradient(circle at 50% 30%, transparent 55%, rgba(74, 58, 42, 0.1) 100%);
+  --grain-opacity: 0.06;
+  --grain-blend: multiply;
+  --fragment-opacity: 0.6;
+  --beam-opacity: 0;
+  --dust-opacity: 0;
+  --sheen: rgba(255, 252, 247, 0.55);
+  --net-opacity: 0.5;
+
+  /* knowledge-network (canvas) palette */
+  --net-1: #8b6f47;
+  --net-2: #a07a4a;
+  --net-3: #c2a878;
+  --net-4: #6f5836;
+  --net-link: 120, 90, 55;
+
+  /* category gradients */
+  --c-core-from: #8b6f47;
+  --c-core-to: #c2a878;
+  --c-core-glow: rgba(139, 111, 71, 0.32);
+  --c-electives-from: #a07a4a;
+  --c-electives-to: #8b6f47;
+  --c-electives-glow: rgba(160, 122, 74, 0.3);
+  --c-math-from: #6f5836;
+  --c-math-to: #a98d5e;
+  --c-math-glow: rgba(111, 88, 54, 0.28);
+  --c-gened-from: #b98e5a;
+  --c-gened-to: #8b6f47;
+  --c-gened-glow: rgba(185, 142, 90, 0.3);
+
+  /* project gradients */
+  --p1-from: #8b6f47;
+  --p1-to: #c2a878;
+  --p2-from: #a07a4a;
+  --p2-to: #6f5836;
+  --p3-from: #b98e5a;
+  --p3-to: #8b6f47;
+  --p4-from: #c2a878;
+  --p4-to: #8b6f47;
+
+  /* vault core 3D */
+  --ring-1: rgba(139, 111, 71, 0.3);
+  --ring-2: rgba(194, 168, 120, 0.42);
+  --ring-3: rgba(111, 88, 54, 0.42);
+  --core-grad: radial-gradient(circle at 32% 28%, #fff7ea, #c2a878 38%, #8b6f47 72%, #4a3a2a 100%);
+  --core-shadow: 0 0 60px -6px rgba(139, 111, 71, 0.6),
+    inset 0 -16px 40px rgba(74, 58, 42, 0.4),
+    inset 0 12px 24px rgba(255, 255, 255, 0.45);
+  --core-aura: radial-gradient(circle, rgba(139, 111, 71, 0.45), transparent 70%);
+  --traveler: #4a3a2a;
+  --traveler-glow: 0 0 16px 4px rgba(139, 111, 71, 0.7);
+}
+
+/* ---- Dark Archive / Intellectual Depth ---------------------------------
+ * Warm charcoal + burnt amber, copper, olive and soft ivory. No neon, no
+ * blue/purple. Metallic sheen instead of glow; texture instead of flat black.
+ * ----------------------------------------------------------------------- */
+.dark {
+  --bg: 15 15 16; /* #0F0F10 deep charcoal */
+  --bg-2: 26 26 28; /* #1A1A1C graphite */
+  --fg: 232 225 217; /* #E8E1D9 soft ivory */
+
+  --accent: 193 122 43; /* #C17A2B burnt amber */
+  --accent-2: 160 99 61; /* #A0633D dusty copper */
+  --accent-3: 111 122 82; /* #6F7A52 muted olive */
+  --accent-4: 232 225 217; /* ivory */
+  --highlight: 216 154 82; /* warm amber sheen */
+
+  --glass-bg: rgba(232, 225, 217, 0.03);
+  --glass-border: rgba(232, 225, 217, 0.1);
+  --glass-strong-bg: rgba(20, 19, 18, 0.72); /* warm layer #141312 */
+  /* depth + a hairline of edge-light — no coloured glow */
+  --shadow-glow: 0 30px 80px -40px rgba(0, 0, 0, 0.9),
+    0 1px 0 0 rgba(232, 225, 217, 0.06);
+  --shadow-soft: 0 24px 60px -36px rgba(0, 0, 0, 0.85);
+  --shadow-accent: 0 0 24px -8px rgba(193, 122, 43, 0.45); /* subtle metallic sheen */
+  --shadow-accent-2: 0 0 24px -8px rgba(160, 99, 61, 0.45);
+
+  --grid-color: rgba(232, 225, 217, 0.04);
+  /* barely-visible warm washes */
+  --ink-wash-1: radial-gradient(circle at 30% 30%, rgba(193, 122, 43, 0.1), transparent 62%);
+  --ink-wash-2: radial-gradient(circle at 70% 60%, rgba(111, 122, 82, 0.09), transparent 62%);
+  --vignette: radial-gradient(circle at 50% 28%, transparent 42%, rgba(0, 0, 0, 0.82) 100%);
+  --grain-opacity: 0.1;
+  --grain-blend: overlay;
+  --fragment-opacity: 0.5; /* graphite slabs / archive shelves emerging from shadow */
+  --beam-opacity: 1;
+  --dust-opacity: 0.5;
+  --sheen: rgba(232, 225, 217, 0.12);
+  --net-opacity: 0.5;
+
+  --net-1: #c17a2b;
+  --net-2: #a0633d;
+  --net-3: #6f7a52;
+  --net-4: #e8e1d9;
+  --net-link: 193, 122, 43;
+
+  /* warm metallic family — bright amber → deep rust → sandy bronze → gold;
+     four distinct steps, zero green. */
+  --c-core-from: #e0a24f; /* bright gold-amber */
+  --c-core-to: #c1742a;
+  --c-core-glow: rgba(216, 154, 82, 0.3);
+  --c-electives-from: #b9702f; /* deep copper-rust */
+  --c-electives-to: #8f4a26;
+  --c-electives-glow: rgba(160, 99, 61, 0.28);
+  --c-math-from: #cda86b; /* sandy bronze */
+  --c-math-to: #9a6a38;
+  --c-math-glow: rgba(201, 163, 106, 0.26);
+  --c-gened-from: #cf8a42; /* amber → copper */
+  --c-gened-to: #a0633d;
+  --c-gened-glow: rgba(207, 138, 66, 0.28);
+
+  --p1-from: #c17a2b;
+  --p1-to: #a0633d;
+  --p2-from: #cf8a42;
+  --p2-to: #8f4a26;
+  --p3-from: #a0633d;
+  --p3-to: #c9a36a;
+  --p4-from: #c9a36a;
+  --p4-to: #a0633d;
+
+  /* vault core — an aged brass artifact, not a neon orb */
+  --ring-1: rgba(193, 122, 43, 0.28);
+  --ring-2: rgba(232, 225, 217, 0.18);
+  --ring-3: rgba(111, 122, 82, 0.3);
+  --core-grad: radial-gradient(circle at 32% 28%, #e8e1d9, #c17a2b 36%, #a0633d 68%, #2c1c10 100%);
+  --core-shadow: 0 0 50px -12px rgba(193, 122, 43, 0.4),
+    inset 0 -16px 40px rgba(0, 0, 0, 0.6),
+    inset 0 12px 24px rgba(232, 225, 217, 0.22);
+  --core-aura: radial-gradient(circle, rgba(193, 122, 43, 0.3), transparent 70%);
+  --traveler: #e8e1d9;
+  --traveler-glow: 0 0 14px 4px rgba(193, 122, 43, 0.6);
+}
+
+@layer base {
+  * {
+    border-color: var(--glass-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  body {
+    @apply bg-bg font-sans text-fg/80 antialiased;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+  ::selection {
+    background: rgb(var(--accent-3) / 0.3);
+    color: rgb(var(--fg));
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--bg));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgb(var(--accent)), rgb(var(--accent-3)));
+    border-radius: 999px;
+    border: 2px solid rgb(var(--bg));
+  }
+}
+
+@layer components {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-strong {
+    background: var(--glass-strong-bg);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      110deg,
+      rgb(var(--fg)),
+      rgb(var(--accent-2)),
+      rgb(var(--accent))
+    );
+  }
+
+  .text-gradient-accent {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      110deg,
+      rgb(var(--accent)),
+      rgb(var(--highlight)),
+      rgb(var(--accent-2)),
+      rgb(var(--accent))
+    );
+    background-size: 200% auto;
+  }
+
+  .hairline {
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgb(var(--accent-2) / 0.6),
+      transparent
+    );
+  }
+
+  /* atmosphere helpers */
+  .surface-grid {
+    background-image: linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  }
+  .ink-wash-1 {
+    background-image: var(--ink-wash-1);
+  }
+  .ink-wash-2 {
+    background-image: var(--ink-wash-2);
+  }
+  .paper-grain {
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    mix-blend-mode: var(--grain-blend);
+  }
+}
+
+@layer utilities {
+  .perspective {
+    perspective: 1200px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Shiki code preview — transparent bg + gutter line numbers */
+.code-shiki .shiki {
+  background: transparent !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.code-shiki code {
+  counter-reset: line;
+  display: grid;
+}
+.code-shiki .line {
+  counter-increment: line;
+  min-height: 1.25em;
+}
+.code-shiki .line::before {
+  content: counter(line);
+  display: inline-block;
+  width: 2.25rem;
+  margin-right: 1.25rem;
+  text-align: right;
+  color: rgb(var(--fg) / 0.28);
+  user-select: none;
+}
+
+/* Rendered .docx (mammoth → HTML) typography */
+.docx-prose {
+  color: rgb(var(--fg) / 0.85);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.docx-prose h1,
+.docx-prose h2,
+.docx-prose h3,
+.docx-prose h4 {
+  color: rgb(var(--fg));
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 1.4em 0 0.5em;
+}
+.docx-prose h1 { font-size: 1.55rem; }
+.docx-prose h2 { font-size: 1.3rem; }
+.docx-prose h3 { font-size: 1.1rem; }
+.docx-prose p { margin: 0.7em 0; }
+.docx-prose ul,
+.docx-prose ol { margin: 0.7em 0; padding-left: 1.4em; }
+.docx-prose ul { list-style: disc; }
+.docx-prose ol { list-style: decimal; }
+.docx-prose li { margin: 0.3em 0; }
+.docx-prose a { color: rgb(var(--accent)); text-decoration: underline; }
+.docx-prose strong { color: rgb(var(--fg)); font-weight: 600; }
+.docx-prose em { font-style: italic; }
+.docx-prose img { max-width: 100%; height: auto; border-radius: 8px; margin: 1em 0; }
+.docx-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 0.85rem;
+}
+.docx-prose td,
+.docx-prose th {
+  border: 1px solid rgb(var(--fg) / 0.15);
+  padding: 6px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+.docx-prose th { background: rgb(var(--fg) / 0.05); font-weight: 600; }

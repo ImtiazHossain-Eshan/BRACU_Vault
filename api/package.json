@@ -1,0 +1,35 @@
+{
+  "name": "bracu-vault-api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cloudflare Worker API for BRACU Vault — student verification, uploads, and admin (Phase 0 scaffold).",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:apply:local": "wrangler d1 migrations apply bracu_vault --local",
+    "db:apply": "wrangler d1 migrations apply bracu_vault --remote",
+    "seed:rbac:local": "wrangler d1 execute bracu_vault --local --file scripts/seed-rbac.sql",
+    "seed:rbac": "wrangler d1 execute bracu_vault --remote --file scripts/seed-rbac.sql",
+    "db:backup": "wrangler d1 export bracu_vault --remote --output backups/bracu_vault.sql",
+    "roster:build": "node scripts/import-roster.mjs"
+  },
+  "dependencies": {
+    "@clerk/backend": "^3.8.4",
+    "@clerk/hono": "^0.1.42",
+    "drizzle-orm": "^0.45.2",
+    "hono": "^4.6.14",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-s3": "^3.1077.0",
+    "@cloudflare/workers-types": "^4.20241218.0",
+    "@types/node": "^20.17.10",
+    "drizzle-kit": "^0.31.10",
+    "typescript": "^5.7.2",
+    "wrangler": "^4.105.0",
+    "xlsx": "^0.18.5"
+  }
+}

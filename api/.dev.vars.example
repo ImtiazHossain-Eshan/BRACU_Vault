@@ -1,0 +1,16 @@
+# Copy to `.dev.vars` (gitignored) for local `wrangler dev`.
+# In production set each with: wrangler secret put <NAME>
+# Do NOT put real secrets in this file — it is committed. Real values go in .dev.vars.
+
+# HMAC key used to hash Student IDs in the roster (keep stable — changing it
+# invalidates every stored roster hash; you'd need to re-import the roster).
+ROSTER_HMAC_SECRET="dev-only-change-me-roster"
+
+# Clerk backend API key — handles auth, email-ownership verification, sessions.
+CLERK_SECRET_KEY=""
+
+# Outbound email (Resend) — optional, admin notifications (Phase 5+).
+RESEND_API_KEY=""
+
+# Cloudflare Turnstile secret — used from Phase 2 onward.
+TURNSTILE_SECRET=""
