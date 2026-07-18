@@ -28,7 +28,7 @@
     "@cloudflare/workers-types": "^4.20241218.0",
     "@types/node": "^20.17.10",
     "drizzle-kit": "^0.31.10",
-    "typescript": "^5.7.2",
+    "typescript": "^7.0.2",
     "wrangler": "^4.105.0",
     "xlsx": "^0.18.5"
   }
