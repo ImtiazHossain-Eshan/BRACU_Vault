@@ -35,8 +35,7 @@ jobs:
       - name: Build landing
         working-directory: landing
         env:
-          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ""
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ vars.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
           NEXT_PUBLIC_API_BASE_URL: "http://127.0.0.1:8787"
           NEXT_PUBLIC_FILES_BASE_URL: ""
         run: npm run build
-
