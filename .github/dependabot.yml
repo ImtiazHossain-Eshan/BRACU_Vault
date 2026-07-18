@@ -4,31 +4,10 @@ updates:
     directory: /api
     schedule:
       interval: weekly
-    open-pull-requests-limit: 2
-    groups:
-      api-minor-and-patch:
-        update-types:
-          - minor
-          - patch
-    ignore:
-      - dependency-name: "*"
-        update-types:
-          - version-update:semver-major
-      - dependency-name: wrangler
-        update-types:
-          - version-update:semver-minor
+    open-pull-requests-limit: 0
 
   - package-ecosystem: npm
     directory: /landing
     schedule:
       interval: weekly
-    open-pull-requests-limit: 2
-    groups:
-      landing-minor-and-patch:
-        update-types:
-          - minor
-          - patch
-    ignore:
-      - dependency-name: "*"
-        update-types:
-          - version-update:semver-major
+    open-pull-requests-limit: 0
