@@ -12,7 +12,7 @@
     "convert:pdf": "node scripts/convert-office-to-pdf.mjs"
   },
   "dependencies": {
-    "@clerk/clerk-react": "^5.61.8",
+    "@clerk/clerk-react": "^5.61.9",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",
     "framer-motion": "^11.3.19",
@@ -23,16 +23,16 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "shiki": "^1.29.2",
-    "three": "^0.169.0",
+    "three": "^0.185.1",
     "zustand": "^4.5.7"
   },
   "devDependencies": {
     "@types/node": "^20.14.12",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.40",
-    "sharp": "^0.35.1",
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.23",
+    "sharp": "^0.35.3",
     "tailwindcss": "^3.4.7",
     "typescript": "^5.5.4"
   }
