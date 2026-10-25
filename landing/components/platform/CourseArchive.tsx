@@ -92,19 +92,19 @@ function SectionGlyph({ name, className }: { name: string; className?: string })
   const n = name.toLowerCase();
   if (n === "python")
     return (
-      <svg viewBox="0 0 24 24" className={className} fill="none">
-        <path d="M12 2c-1.7 0-3 .2-4 .6C6.3 3.2 6 4 6 5v2h6v1H5.5C3.6 8 2 9.5 2 12c0 2.5 1.3 4 3.5 4H8v-2.5c0-1.9 1.6-3.5 3.5-3.5h5c1.4 0 2.5-1.1 2.5-2.5V5c0-1.4-1.3-2.4-2.5-2.7-1-.3-2.1-.3-4.5-.3zm-2.5 2a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
-        <path d="M12 22c1.7 0 3-.2 4-.6 1.7-.6 2-1.4 2-2.4v-2h-6v-1h6.5c1.9 0 3.5-1.5 3.5-4s-1.3-4-3.5-4H16v2.5c0 1.9-1.6 3.5-3.5 3.5h-5C6.1 14 5 15.1 5 16.5V19c0 1.4 1.3 2.4 2.5 2.7 1 .3 2.1.3 4.5.3zm2.5-2a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
-      </svg>
+      <img
+        src="/icons/python.png"
+        alt="Python"
+        className={cn("inline-block object-contain", className)}
+      />
     );
   if (n === "java")
     return (
-      <svg viewBox="0 0 24 24" className={className} fill="none">
-        <path d="M8 17s-1 .5 1 1c2 .5 5 .5 7-1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M7 20s-1 .5 1.5 1c2.5.5 6 .3 8-1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M12 2s-5 2.5-2 6c1.5 1.8.5 3-1 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M14 4s4 2 1 5.5c-1.5 1.8-.5 3 1 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
+      <img
+        src="/icons/java.png"
+        alt="Java"
+        className={cn("inline-block object-contain", className)}
+      />
     );
   if (n.includes("lab"))
     return (
@@ -560,10 +560,9 @@ export default function CourseArchive({
                               style={{ background: `radial-gradient(circle, ${lm?.glow ?? cat?.glow}, transparent 70%)` }}
                             />
                             <span
-                              className="relative grid h-14 w-14 place-items-center rounded-2xl text-white"
-                              style={{ backgroundColor: lm?.color ?? "var(--c-accent)" }}
+                              className="relative grid h-14 w-14 place-items-center rounded-2xl border border-fg/10 bg-fg/[0.04] p-2.5 backdrop-blur-sm"
                             >
-                              <SectionGlyph name={s.name} className="h-7 w-7" />
+                              <SectionGlyph name={s.name} className="h-9 w-9" />
                             </span>
                             <h3 className="relative mt-5 font-display text-2xl font-semibold text-fg">
                               {s.name}

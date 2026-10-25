@@ -183,14 +183,16 @@ export default function CommandSearch() {
                             <span>{f.course}</span>
                             {f.section?.startsWith("Python") ? (
                               <>
-                                <span className="rounded bg-[#3776AB]/20 px-1.5 py-0.5 text-[10px] font-semibold text-[#66acf1]">
+                                <span className="inline-flex items-center gap-1 rounded bg-[#3776AB]/20 px-1.5 py-0.5 text-[10px] font-semibold text-[#66acf1]">
+                                  <img src="/icons/python.png" alt="" className="h-3 w-3 object-contain" />
                                   Python
                                 </span>
                                 <span>· {f.section.replace(/^Python\s*\/\s*/i, "")}</span>
                               </>
                             ) : f.section?.startsWith("Java") ? (
                               <>
-                                <span className="rounded bg-[#E76F00]/20 px-1.5 py-0.5 text-[10px] font-semibold text-[#ffa34d]">
+                                <span className="inline-flex items-center gap-1 rounded bg-[#E76F00]/20 px-1.5 py-0.5 text-[10px] font-semibold text-[#ffa34d]">
+                                  <img src="/icons/java.png" alt="" className="h-3 w-3 object-contain" />
                                   Java
                                 </span>
                                 <span>· {f.section.replace(/^Java\s*\/\s*/i, "")}</span>
