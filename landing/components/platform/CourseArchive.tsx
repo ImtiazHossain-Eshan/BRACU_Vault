@@ -19,8 +19,19 @@ interface FolderNode {
   children: Record<string, FolderNode>;
 }
 
-function buildTree(files: VaultResource[]): FolderNode {
+function buildTree(files: VaultResource[], isMultiLang?: boolean): FolderNode {
   const root: FolderNode = { name: "root", files: [], children: {} };
+  if (isMultiLang) {
+    root.children["Python"] = { name: "Python", files: [], children: {} };
+    root.children["Java"] = {
+      name: "Java",
+      files: [],
+      children: {
+        Lab: { name: "Lab", files: [], children: {} },
+        Theory: { name: "Theory", files: [], children: {} },
+      },
+    };
+  }
   for (const f of files) {
     // section is the folder chain between the course and the file (from the scan).
     const chain = f.section ? f.section.split(" / ").filter(Boolean) : [];
@@ -60,8 +71,41 @@ function Chevron({ open }: { open: boolean }) {
     </svg>
   );
 }
+/** Courses whose vault folders are split into Python / Java. */
+const MULTI_LANG_COURSES = new Set(["CSE110", "CSE111", "CSE220", "CSE221"]);
+const isLang = (name: string) => /^(python|java)$/i.test(name.trim());
+
+const LANG_META: Record<string, { color: string; glow: string; desc: string }> = {
+  python: {
+    color: "#3776AB",
+    glow: "rgba(55, 118, 171, 0.45)",
+    desc: "Python implementation — notes, labs, assignments and solutions",
+  },
+  java: {
+    color: "#E76F00",
+    glow: "rgba(231, 111, 0, 0.45)",
+    desc: "Java implementation — notes, labs, assignments and solutions",
+  },
+};
+
 function SectionGlyph({ name, className }: { name: string; className?: string }) {
   const n = name.toLowerCase();
+  if (n === "python")
+    return (
+      <svg viewBox="0 0 24 24" className={className} fill="none">
+        <path d="M12 2c-1.7 0-3 .2-4 .6C6.3 3.2 6 4 6 5v2h6v1H5.5C3.6 8 2 9.5 2 12c0 2.5 1.3 4 3.5 4H8v-2.5c0-1.9 1.6-3.5 3.5-3.5h5c1.4 0 2.5-1.1 2.5-2.5V5c0-1.4-1.3-2.4-2.5-2.7-1-.3-2.1-.3-4.5-.3zm-2.5 2a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+        <path d="M12 22c1.7 0 3-.2 4-.6 1.7-.6 2-1.4 2-2.4v-2h-6v-1h6.5c1.9 0 3.5-1.5 3.5-4s-1.3-4-3.5-4H16v2.5c0 1.9-1.6 3.5-3.5 3.5h-5C6.1 14 5 15.1 5 16.5V19c0 1.4 1.3 2.4 2.5 2.7 1 .3 2.1.3 4.5.3zm2.5-2a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+      </svg>
+    );
+  if (n === "java")
+    return (
+      <svg viewBox="0 0 24 24" className={className} fill="none">
+        <path d="M8 17s-1 .5 1 1c2 .5 5 .5 7-1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M7 20s-1 .5 1.5 1c2.5.5 6 .3 8-1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M12 2s-5 2.5-2 6c1.5 1.8.5 3-1 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M14 4s4 2 1 5.5c-1.5 1.8-.5 3 1 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    );
   if (n.includes("lab"))
     return (
       <svg viewBox="0 0 24 24" className={className} fill="none">
@@ -250,14 +294,16 @@ export default function CourseArchive({
     const injected = injectedForCourse(code, overrides, new Set(files.map((f) => f.p)));
     return [...base, ...injected, ...community];
   }, [files, community, overrides, code]);
-  const root = useMemo(() => buildTree(allFiles), [allFiles]);
+  const isMultiLang = MULTI_LANG_COURSES.has(code.replace(/\s+/g, ""));
+  const root = useMemo(() => buildTree(allFiles, isMultiLang), [allFiles, isMultiLang]);
   const sections = useMemo(() => childFolders(root), [root]);
-
   const [query, setQuery] = useState("");
   const [section, setSection] = useState<string | null>(null);
   const [path, setPath] = useState<string[]>([]);
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [recent, setRecent] = useState<VaultResource[]>([]);
+
+  const activeLangMeta = section ? LANG_META[section.toLowerCase()] : null;
 
   function openFile(f: VaultResource) {
     setRecent((prev) => [f, ...prev.filter((x) => x.p !== f.p)].slice(0, 6));
@@ -373,7 +419,7 @@ export default function CourseArchive({
       >
         <div
           className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full opacity-50 blur-3xl"
-          style={{ background: `radial-gradient(circle, ${cat?.glow}, transparent 70%)` }}
+          style={{ background: `radial-gradient(circle, ${activeLangMeta?.glow ?? cat?.glow}, transparent 70%)` }}
         />
         <div className="relative flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -386,10 +432,28 @@ export default function CourseArchive({
               {code}
             </h1>
             <p className="mt-1.5 text-base text-fg/60">{title}</p>
+            {activeLangMeta && (
+              <span
+                className="mt-2 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold text-white/90"
+                style={{ backgroundColor: activeLangMeta.color }}
+              >
+                <SectionGlyph name={section!} className="h-3.5 w-3.5" />
+                {section}
+              </span>
+            )}
           </div>
-          <div className="text-right">
-            <span className="font-display text-4xl font-semibold text-fg">{allFiles.length}</span>
-            <span className="ml-1 text-sm text-fg/40">files</span>
+          <div className="flex flex-wrap items-center gap-4">
+            <div className="text-right">
+              <span className="font-display text-4xl font-semibold text-fg">{allFiles.length}</span>
+              <span className="ml-1 text-sm text-fg/40">files</span>
+            </div>
+            <UploadButton
+              context={{
+                course: code,
+                section: section ? (path.length > 0 ? `${section} / ${path.join(" / ")}` : section) : undefined,
+              }}
+              label="Contribute"
+            />
           </div>
         </div>
       </motion.div>
@@ -468,8 +532,77 @@ export default function CourseArchive({
                 </div>
               )}
 
+              {/* Language picker cards for multi-lang courses */}
+              {isMultiLang && (
+                <div className="mb-6">
+                  <h2 className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg/45">
+                    Choose language
+                  </h2>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    {sections
+                      .filter((s) => isLang(s.name))
+                      .sort((a, b) => (a.name.toLowerCase() === "python" ? -1 : 1))
+                      .map((s, i) => {
+                        const lm = LANG_META[s.name.toLowerCase()];
+                        const fileCount = countFiles(s);
+                        return (
+                          <motion.button
+                            key={s.name}
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: i * 0.06 }}
+                            whileHover={{ y: -5 }}
+                            onClick={() => enterSection(s.name)}
+                            className="group relative overflow-hidden rounded-[1.75rem] glass p-7 text-left transition-shadow hover:shadow-glow"
+                          >
+                            <div
+                              className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full opacity-40 blur-2xl transition-opacity group-hover:opacity-70"
+                              style={{ background: `radial-gradient(circle, ${lm?.glow ?? cat?.glow}, transparent 70%)` }}
+                            />
+                            <span
+                              className="relative grid h-14 w-14 place-items-center rounded-2xl text-white"
+                              style={{ backgroundColor: lm?.color ?? "var(--c-accent)" }}
+                            >
+                              <SectionGlyph name={s.name} className="h-7 w-7" />
+                            </span>
+                            <h3 className="relative mt-5 font-display text-2xl font-semibold text-fg">
+                              {s.name}
+                            </h3>
+                            <p className="relative mt-1.5 text-sm text-fg/50">
+                              {lm?.desc ?? `${fileCount} files`}
+                            </p>
+                            <p className="relative mt-1 text-xs text-fg/35">
+                              {fileCount > 0 ? (
+                                `${fileCount} file${fileCount !== 1 ? "s" : ""} · ${childFolders(s).length} folder${childFolders(s).length !== 1 ? "s" : ""}`
+                              ) : (
+                                <span className="inline-flex items-center gap-1.5 font-medium text-accent">
+                                  <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+                                  Initial folders ready · Contributions open
+                                </span>
+                              )}
+                            </p>
+                            <div className="relative mt-4 flex flex-wrap gap-1.5">
+                              {childFolders(s)
+                                .slice(0, 4)
+                                .map((c) => (
+                                  <span
+                                    key={c.name}
+                                    className="rounded-full border border-fg/10 bg-fg/[0.03] px-2.5 py-0.5 text-[11px] text-fg/55"
+                                  >
+                                    {c.name}
+                                  </span>
+                                ))}
+                            </div>
+                          </motion.button>
+                        );
+                      })}
+                  </div>
+                </div>
+              )}
+
+              {/* Standard section cards (non-language folders, or all sections for normal courses) */}
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {sections.map((s, i) => (
+                {sections.filter((s) => !isMultiLang || !isLang(s.name)).map((s, i) => (
                   <motion.button
                     key={s.name}
                     initial={{ opacity: 0, y: 16 }}
@@ -591,7 +724,26 @@ export default function CourseArchive({
                 )}
 
                 {current && current.files.length === 0 && childFolders(current).length === 0 && (
-                  <p className="mt-10 text-center text-sm text-fg/45">This folder is empty.</p>
+                  <div className="mx-auto mt-12 max-w-md rounded-2xl glass p-8 text-center">
+                    <div className="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-2xl bg-fg/[0.04] text-fg/40">
+                      <Folder className="h-6 w-6" />
+                    </div>
+                    <p className="text-base font-medium text-fg/80">This folder is empty</p>
+                    <p className="mt-1 text-sm text-fg/45">
+                      {section && isLang(section)
+                        ? `Be the first to share ${section} materials for ${code}!`
+                        : "Be the first to contribute notes, slides or solutions."}
+                    </p>
+                    <div className="mt-5 flex justify-center">
+                      <UploadButton
+                        context={{
+                          course: code,
+                          section: section ? (path.length > 0 ? `${section} / ${path.join(" / ")}` : section) : undefined,
+                        }}
+                        label="Contribute files"
+                      />
+                    </div>
+                  </div>
                 )}
               </div>
             </motion.div>

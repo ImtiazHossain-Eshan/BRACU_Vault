@@ -15,9 +15,11 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, renameSync, statSync } from "node:fs";
 import { basename, dirname, extname, join, relative } from "node:path";
+import { fileURLToPath } from "node:url";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const VAULT = "A:\\BRACU Vault";
-const CACHE = join(process.cwd(), ".pdf-cache");
+const CACHE = join(__dirname, "..", ".pdf-cache");
 const OFFICE = new Set([".pptx", ".ppt", ".docx", ".doc", ".xlsx", ".xls"]);
 
 function findSoffice() {

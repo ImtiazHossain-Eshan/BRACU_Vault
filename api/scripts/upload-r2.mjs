@@ -40,6 +40,7 @@ const MIME = {
   pptx: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
   xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
   doc: "application/msword", ppt: "application/vnd.ms-powerpoint", xls: "application/vnd.ms-excel",
+  zip: "application/zip",
 };
 
 const s3 = new S3Client({
