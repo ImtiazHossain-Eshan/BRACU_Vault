@@ -179,9 +179,25 @@ export default function CommandSearch() {
                           <span className="block truncate text-sm font-medium text-fg">
                             <Highlight text={f.name} query={q} />
                           </span>
-                          <span className="block truncate text-xs text-fg/45">
-                            {f.course}
-                            {f.section ? ` · ${f.section}` : ""}
+                          <span className="flex items-center gap-1.5 truncate text-xs text-fg/45">
+                            <span>{f.course}</span>
+                            {f.section?.startsWith("Python") ? (
+                              <>
+                                <span className="rounded bg-[#3776AB]/20 px-1.5 py-0.5 text-[10px] font-semibold text-[#66acf1]">
+                                  Python
+                                </span>
+                                <span>· {f.section.replace(/^Python\s*\/\s*/i, "")}</span>
+                              </>
+                            ) : f.section?.startsWith("Java") ? (
+                              <>
+                                <span className="rounded bg-[#E76F00]/20 px-1.5 py-0.5 text-[10px] font-semibold text-[#ffa34d]">
+                                  Java
+                                </span>
+                                <span>· {f.section.replace(/^Java\s*\/\s*/i, "")}</span>
+                              </>
+                            ) : (
+                              <span>{f.section ? ` · ${f.section}` : ""}</span>
+                            )}
                           </span>
                         </span>
                         {i === active && (

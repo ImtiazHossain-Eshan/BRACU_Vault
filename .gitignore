@@ -6,6 +6,9 @@ landing/.next/
 landing/out/
 landing/build/
 landing/.pdf-cache/
+.pdf-cache/
+**/.pdf-cache/
+tmp/
 api/dist/
 
 # Cloudflare local state

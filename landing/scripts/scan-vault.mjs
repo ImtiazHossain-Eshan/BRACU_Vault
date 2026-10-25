@@ -1,7 +1,10 @@
 import { readdirSync, statSync, writeFileSync, mkdirSync } from "node:fs";
-import { join, extname, sep } from "node:path";
+import { join, extname, sep, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = "A:\\BRACU Vault";
+const OUT_FILE = join(__dirname, "..", "data", "vault-index.json");
 
 // Vendor / noise directories to skip entirely (e.g. bundled PyOpenGL).
 const SKIP_DIRS = new Set([
@@ -15,6 +18,7 @@ const ALLOW = new Set([
   "java", "txt", "md", "csv", "json", "asm", "sql", "html", "css",
   "docx", "doc", "pptx", "ppt", "xlsx", "xls",
   "png", "jpg", "jpeg", "gif", "webp", "svg",
+  "zip",
 ]);
 
 const catOf = (seg) =>
@@ -54,8 +58,8 @@ function walk(dir) {
 walk(ROOT);
 out.sort((a, b) => a.course.localeCompare(b.course) || a.name.localeCompare(b.name));
 
-mkdirSync("data", { recursive: true });
-writeFileSync("data/vault-index.json", JSON.stringify(out));
+mkdirSync(dirname(OUT_FILE), { recursive: true });
+writeFileSync(OUT_FILE, JSON.stringify(out));
 
 const byExt = {};
 for (const f of out) byExt[f.ext] = (byExt[f.ext] || 0) + 1;

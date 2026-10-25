@@ -90,7 +90,8 @@ export const courses: Course[] = [
   { code: "CSE428", title: "Digital Image Processing", category: "electives" },
   { code: "CSE437", title: "Data Science", category: "electives" },
   { code: "CSE440", title: "Natural Language Processing", category: "electives" },
-  { code: "CSE471", title: "Machine Learning", category: "electives" },
+  { code: "CSE471", title: "System Analysis and Design", category: "electives" },
+  { code: "CSE489", title: "Mobile Application Development", category: "electives" },
 
   // Mathematics & Science
   { code: "MAT110", title: "Mathematics I: Calculus", category: "math" },
@@ -111,7 +112,7 @@ export const courses: Course[] = [
   { code: "BUS201", title: "Introduction to Business", category: "gened" },
   { code: "ECO101", title: "Introduction to Microeconomics", category: "gened" },
   { code: "EMB101", title: "Emergence of Bangladesh", category: "gened" },
-  { code: "CST301", title: "Community Service", category: "gened" },
+  { code: "CST333", title: "Personal Finance for Sustainable Economic Wellbeing", category: "gened" },
 ];
 
 export const countByCategory = (id: CategoryId): number =>
