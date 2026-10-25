@@ -11,6 +11,7 @@ import { cn } from "@/lib/cn";
 import { fetchCourseUploads } from "@/lib/verify-api";
 import { fetchOverrides, applyOverrides, injectedForCourse, type FileOverride } from "@/lib/overrides";
 import UploadButton from "@/components/upload/UploadButton";
+import LiquidTrackSlider from "@/components/platform/LiquidTrackSlider";
 
 /* ----------------------------- tree model ------------------------------ */
 interface FolderNode {
@@ -433,34 +434,14 @@ export default function CourseArchive({
             </h1>
             <p className="mt-1.5 text-base text-fg/60">{title}</p>
             {isMultiLang && section && isLang(section) && (
-              <div className="mt-3.5 flex items-center gap-2.5">
-                <span className="text-[11px] font-semibold uppercase tracking-wider text-fg/40">Track:</span>
-                <div className="inline-flex items-center rounded-xl border border-fg/10 bg-fg/[0.04] p-1 shadow-inner backdrop-blur-md">
-                  <button
-                    onClick={() => { setSection("Python"); setPath([]); }}
-                    className={cn(
-                      "flex items-center gap-2 rounded-lg px-3 py-1 text-xs font-medium transition-all",
-                      section.toLowerCase() === "python"
-                        ? "border border-fg/10 bg-bg text-fg shadow-soft"
-                        : "text-fg/50 hover:bg-fg/[0.03] hover:text-fg"
-                    )}
-                  >
-                    <img src="/icons/python.png" alt="" className="h-3.5 w-3.5 object-contain" />
-                    <span>Python</span>
-                  </button>
-                  <button
-                    onClick={() => { setSection("Java"); setPath([]); }}
-                    className={cn(
-                      "flex items-center gap-2 rounded-lg px-3 py-1 text-xs font-medium transition-all",
-                      section.toLowerCase() === "java"
-                        ? "border border-fg/10 bg-bg text-fg shadow-soft"
-                        : "text-fg/50 hover:bg-fg/[0.03] hover:text-fg"
-                    )}
-                  >
-                    <img src="/icons/java.png" alt="" className="h-3.5 w-3.5 object-contain" />
-                    <span>Java</span>
-                  </button>
-                </div>
+              <div className="mt-3.5">
+                <LiquidTrackSlider
+                  section={section}
+                  onSelect={(track) => {
+                    setSection(track);
+                    setPath([]);
+                  }}
+                />
               </div>
             )}
           </div>
