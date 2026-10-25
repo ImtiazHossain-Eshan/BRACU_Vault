@@ -8,7 +8,7 @@ import { cn } from "@/lib/cn";
 import Highlight from "./Highlight";
 
 /** Global ⌘K / Ctrl+K / "/" search over every real file in the vault.
- *  Selecting a result opens the file preview inline — the single
+ *  Selecting a result opens the file preview inline - the single
  *  "find anything, fast" surface across all courses. */
 export default function CommandSearch() {
   const { open: openPreview } = usePreview();

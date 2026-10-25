@@ -8,7 +8,7 @@ export default function Stats() {
   return (
     <section className="relative scroll-mt-24 py-24 sm:py-28">
       <div className="mx-auto max-w-content px-5 sm:px-8">
-        {/* flowing stat row — no boxes, just numbers separated by glowing hairlines */}
+        {/* flowing stat row - no boxes, just numbers separated by glowing hairlines */}
         <div className="grid grid-cols-2 gap-y-12 lg:grid-cols-4">
           {stats.map((s, i) => (
             <motion.div
@@ -34,7 +34,7 @@ export default function Stats() {
           ))}
         </div>
 
-        {/* resource-type marquee — communicates breadth without a single box */}
+        {/* resource-type marquee - communicates breadth without a single box */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

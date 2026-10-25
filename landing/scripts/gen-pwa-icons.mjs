@@ -3,7 +3,7 @@
 //
 // Why a script (not next/og ImageResponse): @vercel/og crashes on Windows
 // (fileURLToPath on its bundled font → "Invalid URL"), so we rasterize the
-// brand SVG to static PNGs with sharp instead — works on every OS + in prod.
+// brand SVG to static PNGs with sharp instead - works on every OS + in prod.
 import sharp from "sharp";
 import { mkdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";

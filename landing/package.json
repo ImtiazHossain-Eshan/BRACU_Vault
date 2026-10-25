@@ -2,7 +2,7 @@
   "name": "bracu-vault-landing",
   "version": "1.0.0",
   "private": true,
-  "description": "Premium landing page for BRACU Vault — the academic archive for BRAC University CSE students.",
+  "description": "Premium landing page for BRACU Vault - the academic archive for BRAC University CSE students.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

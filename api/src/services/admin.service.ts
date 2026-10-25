@@ -9,7 +9,7 @@ const safeName = (name: string) => name.replace(/[^\w.\- ]+/g, "_").slice(0, 120
 const headerSafe = (name: string) => name.replace(/[^\x20-\x7E]/g, "_").replace(/"/g, "'").slice(0, 120);
 
 /** Admin/moderation business logic. Authorization is enforced at the controller
- *  via requirePermission — this layer assumes the caller is already allowed. */
+ *  via requirePermission - this layer assumes the caller is already allowed. */
 export class AdminService {
   private readonly repo: AdminRepository;
   private readonly overrides: OverrideRepository;

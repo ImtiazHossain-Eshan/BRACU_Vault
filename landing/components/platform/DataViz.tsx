@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import type { Slice } from "@/lib/filters";
 import { TYPE_TOKEN } from "@/lib/ui-meta";
 
-/** Animated horizontal bars — grow on mount and re-flow when data changes. */
+/** Animated horizontal bars - grow on mount and re-flow when data changes. */
 export default function DataViz({
   data,
   title = "Distribution by type",

@@ -27,7 +27,7 @@ export default function Navbar() {
     restDelta: 0.001,
   });
 
-  // Upload lives in the chrome only while exploring the vault — not on the
+  // Upload lives in the chrome only while exploring the vault - not on the
   // marketing landing page (keeps it out of the way while reading).
   const pathname = usePathname();
   const showUpload = ["/orbit", "/course", "/dashboard"].some((p) => pathname?.startsWith(p) ?? false);

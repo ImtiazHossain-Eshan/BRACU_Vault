@@ -79,12 +79,12 @@ const LANG_META: Record<string, { color: string; glow: string; desc: string }> =
   python: {
     color: "#3776AB",
     glow: "rgba(55, 118, 171, 0.45)",
-    desc: "Python implementation — notes, labs, assignments and solutions",
+    desc: "Python implementation - notes, labs, assignments and solutions",
   },
   java: {
     color: "#E76F00",
     glow: "rgba(231, 111, 0, 0.45)",
-    desc: "Java implementation — notes, labs, assignments and solutions",
+    desc: "Java implementation - notes, labs, assignments and solutions",
   },
 };
 

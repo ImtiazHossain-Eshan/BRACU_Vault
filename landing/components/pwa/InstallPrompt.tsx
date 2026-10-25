@@ -38,7 +38,7 @@ export default function InstallPrompt() {
     };
     window.addEventListener("beforeinstallprompt", onBIP);
 
-    // iOS: no beforeinstallprompt — detect iOS Safari and show the manual hint
+    // iOS: no beforeinstallprompt - detect iOS Safari and show the manual hint
     const ua = window.navigator.userAgent;
     const isIOS = /iphone|ipad|ipod/i.test(ua);
     const isSafari = /^((?!chrome|crios|android).)*safari/i.test(ua);

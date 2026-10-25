@@ -2,8 +2,7 @@ import type { Config } from "tailwindcss";
 
 /**
  * Two themes share one set of semantic tokens (CSS variables defined in
- * globals.css). Tailwind colors point at those vars so every utility —
- * `text-fg/60`, `bg-bg`, `from-accent` — is theme-aware with zero `dark:` churn.
+ * globals.css). Tailwind colors point at those vars so every utility - * `text-fg/60`, `bg-bg`, `from-accent` - is theme-aware with zero `dark:` churn.
  * `.dark` on <html> swaps the variable values.
  */
 const config: Config = {

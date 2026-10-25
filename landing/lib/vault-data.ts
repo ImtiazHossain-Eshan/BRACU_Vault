@@ -11,8 +11,8 @@ import {
 
 /* ----------------------------------------------------------------------------
  * Deterministic dataset. Files are generated from a seeded RNG keyed on the
- * course code, so the catalogue is stable across SSR/CSR and rebuilds — no
- * hydration drift — while still feeling rich and varied.
+ * course code, so the catalogue is stable across SSR/CSR and rebuilds - no
+ * hydration drift - while still feeling rich and varied.
  * -------------------------------------------------------------------------- */
 
 function hash(str: string): number {

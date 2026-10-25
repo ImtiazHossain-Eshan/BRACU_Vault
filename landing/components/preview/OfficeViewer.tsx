@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { fileUrl, officePdfUrl } from "@/lib/preview-utils";
 
 /* Office files (pptx/ppt/docx/doc) preview best as a pre-converted PDF rendered
- * by pdf.js — full layout + images. If the PDF hasn't been generated yet we fall
+ * by pdf.js - full layout + images. If the PDF hasn't been generated yet we fall
  * back to the lightweight in-browser viewers (text outline) so nothing breaks. */
 
 function Spinner() {
@@ -24,7 +24,7 @@ const PptxViewer = dynamic(() => import("./PptxViewer"), { ssr: false, loading: 
 export default function OfficeViewer({ p, ext }: { p: string; ext: string }) {
   const pdf = officePdfUrl(p);
   // Student uploads (community/) have no pre-converted PDF, and the in-browser
-  // text viewers strip images — offer the download instead of a broken preview.
+  // text viewers strip images - offer the download instead of a broken preview.
   const isCommunity = p.startsWith("community/");
   const [mode, setMode] = useState<"checking" | "pdf" | "legacy">(isCommunity ? "legacy" : "checking");
 

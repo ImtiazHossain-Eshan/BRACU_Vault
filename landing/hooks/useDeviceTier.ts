@@ -10,7 +10,7 @@ export interface DeviceCaps {
   isTouch: boolean;
   reducedMotion: boolean;
   saveData: boolean;
-  /** capability gates — wire these into 3D / motion-heavy components */
+  /** capability gates - wire these into 3D / motion-heavy components */
   enable3D: boolean; // full R3F scene
   enableAmbient: boolean; // drifting orbs / particle fields
   enableParallax: boolean; // pointer/scroll parallax
@@ -63,8 +63,7 @@ function detect(): Omit<DeviceCaps, "ready"> {
 
 /**
  * Detects device capability and returns tier + feature gates. SSR-safe: starts
- * as the conservative "low" tier with `ready=false`, then upgrades after mount —
- * so the first paint is light and never renders 3D until the device is known.
+ * as the conservative "low" tier with `ready=false`, then upgrades after mount - * so the first paint is light and never renders 3D until the device is known.
  */
 export function useDeviceTier(): DeviceCaps {
   const [caps, setCaps] = useState<DeviceCaps>({

@@ -28,7 +28,7 @@ export interface VerificationStatus {
 /**
  * Student verification, by university email only. Clerk proves the caller owns
  * a verified `@g.bracu.ac.bd` address (and its allowlist blocks every other
- * domain at sign-up), which is sufficient proof of BRAC studenthood — so there
+ * domain at sign-up), which is sufficient proof of BRAC studenthood - so there
  * is no Student ID step. We re-check the domain server-side as defense in depth.
  */
 export class VerificationService {

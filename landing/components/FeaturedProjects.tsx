@@ -76,7 +76,7 @@ export default function FeaturedProjects() {
               onClick={(e) => {
                 const s = pressRef.current;
                 // If the pointer traveled more than a few px, this was a
-                // drag-to-scroll, not a click — don't open the repo.
+                // drag-to-scroll, not a click - don't open the repo.
                 if (s && Math.hypot(e.clientX - s.x, e.clientY - s.y) > 8) {
                   e.preventDefault();
                 }

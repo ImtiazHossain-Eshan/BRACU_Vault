@@ -3,7 +3,7 @@ import type { CategoryId } from "./types";
 import { courseDetails } from "./vault-data";
 
 /* ----------------------------------------------------------------------------
- * Orbit layout algorithm — shared by the 3D scene and the 2D fallback so both
+ * Orbit layout algorithm - shared by the 3D scene and the 2D fallback so both
  * render the exact same structure. Categories become concentric rings (inner =
  * core, outer = electives/GenEd); courses are spaced evenly along each ring.
  * -------------------------------------------------------------------------- */
@@ -17,7 +17,7 @@ const RING_RADIUS: Record<CategoryId, number> = {
   gened: 9.6,
 };
 
-// Fixed metallic palette — reads well over both the Paper and Dark Archive themes.
+// Fixed metallic palette - reads well over both the Paper and Dark Archive themes.
 const RING_COLOR: Record<CategoryId, string> = {
   core: "#C17A2B",
   math: "#6F7A52",

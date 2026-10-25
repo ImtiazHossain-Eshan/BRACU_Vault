@@ -1,4 +1,4 @@
-/* BRACU Vault service worker — offline shell + smart caching.
+/* BRACU Vault service worker - offline shell + smart caching.
  * Bump VERSION to invalidate the app shell (static + pages) on deploy.
  * The opened-files cache is kept stable across versions (LRU-trimmed) so
  * material you've viewed stays available offline through app updates. */
@@ -41,7 +41,7 @@ async function trimCache(name, max) {
   for (let i = 0; i < keys.length - max; i++) await cache.delete(keys[i]);
 }
 
-// cache-first with LRU — used for opened vault files (PDFs, code, etc.)
+// cache-first with LRU - used for opened vault files (PDFs, code, etc.)
 async function fileStrategy(req) {
   const cache = await caches.open(FILE_CACHE);
   const hit = await cache.match(req);
@@ -55,7 +55,7 @@ async function fileStrategy(req) {
   return res;
 }
 
-// network-first with cache fallback — fresh data, but works offline
+// network-first with cache fallback - fresh data, but works offline
 async function networkFirst(req, cacheName) {
   const cache = await caches.open(cacheName);
   try {
@@ -67,7 +67,7 @@ async function networkFirst(req, cacheName) {
   }
 }
 
-// stale-while-revalidate — instant from cache, refresh in background
+// stale-while-revalidate - instant from cache, refresh in background
 async function staleWhileRevalidate(req, cacheName) {
   const cache = await caches.open(cacheName);
   const hit = await cache.match(req);
@@ -86,7 +86,7 @@ self.addEventListener("fetch", (e) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return; // skip cross-origin
 
-  // app pages — network-first, fall back to cache, then the offline shell
+  // app pages - network-first, fall back to cache, then the offline shell
   if (request.mode === "navigate") {
     e.respondWith(
       networkFirst(request, PAGE_CACHE).then(
@@ -97,19 +97,19 @@ self.addEventListener("fetch", (e) => {
     return;
   }
 
-  // opened files (real vault) — cache-first + LRU so they read offline
+  // opened files (real vault) - cache-first + LRU so they read offline
   if (url.pathname.startsWith("/api/file")) {
     e.respondWith(fileStrategy(request));
     return;
   }
 
-  // search / listings — fresh when online, cached when not
+  // search / listings - fresh when online, cached when not
   if (url.pathname.startsWith("/api/")) {
     e.respondWith(networkFirst(request, PAGE_CACHE));
     return;
   }
 
-  // hashed/static assets — instant from cache, revalidate quietly
+  // hashed/static assets - instant from cache, revalidate quietly
   if (isStatic(url)) {
     e.respondWith(staleWhileRevalidate(request, STATIC_CACHE));
     return;

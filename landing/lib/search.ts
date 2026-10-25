@@ -1,4 +1,4 @@
-/** Tiny fuzzy matcher + highlighter — no dependencies, fast enough for live search. */
+/** Tiny fuzzy matcher + highlighter - no dependencies, fast enough for live search. */
 
 /** Subsequence fuzzy score. Returns -1 for no match, higher = better. */
 export function fuzzyScore(query: string, text: string): number {

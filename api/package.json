@@ -2,7 +2,7 @@
   "name": "bracu-vault-api",
   "version": "0.1.0",
   "private": true,
-  "description": "Cloudflare Worker API for BRACU Vault — student verification, uploads, and admin (Phase 0 scaffold).",
+  "description": "Cloudflare Worker API for BRACU Vault - student verification, uploads, and admin (Phase 0 scaffold).",
   "type": "module",
   "scripts": {
     "dev": "wrangler dev",

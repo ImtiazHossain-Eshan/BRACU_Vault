@@ -2,9 +2,9 @@ import indexRaw from "@/data/vault-index.json";
 import { kindOf, type PreviewKind, type VaultResource } from "./preview-utils";
 
 /** Server-only: the scanned vault index + filtering. Do not import from client
- *  components (it would ship the whole index) — use the /api/resources route. */
+ *  components (it would ship the whole index) - use the /api/resources route. */
 // Course codes are displayed without spaces (e.g. "CSE221"). The on-disk path
-// (`p`) keeps its real spaces — it's the source of truth for the file API.
+// (`p`) keeps its real spaces - it's the source of truth for the file API.
 export const allResources: VaultResource[] = (indexRaw as VaultResource[]).map(
   (f) => ({ ...f, course: f.course.replace(/\s+/g, "") })
 );

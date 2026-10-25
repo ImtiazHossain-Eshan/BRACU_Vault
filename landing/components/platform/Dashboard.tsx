@@ -111,7 +111,7 @@ export default function Dashboard() {
           <div className="mt-12 h-56 animate-pulse rounded-3xl bg-fg/[0.04]" />
         ) : (
           <div className="mt-14 flex flex-col gap-16">
-            {/* continue — floating rail */}
+            {/* continue - floating rail */}
             <motion.section custom={0} variants={section} initial="hidden" animate="show">
               <Heading hint={`${recentCourses.length} recent`}>
                 Continue where you left off

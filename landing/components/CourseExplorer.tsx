@@ -100,7 +100,7 @@ export default function CourseExplorer() {
           </div>
         </div>
 
-        {/* results — organic flowing wrap, animated in/out */}
+        {/* results - organic flowing wrap, animated in/out */}
         <motion.div layout className="mt-12 flex flex-wrap justify-center gap-3">
           <AnimatePresence mode="popLayout">
             {filtered.map((c) => {

@@ -1,6 +1,6 @@
 /**
  * Single source of truth for the landing page content.
- * Course titles are editable — adjust freely to match your exact BRACU catalog.
+ * Course titles are editable - adjust freely to match your exact BRACU catalog.
  */
 
 export type CategoryId = "core" | "electives" | "math" | "gened";

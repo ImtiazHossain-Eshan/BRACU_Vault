@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 /**
- * Global client state — bookmarks and recently-viewed courses — persisted to
+ * Global client state - bookmarks and recently-viewed courses - persisted to
  * localStorage. Hydration is deferred (`skipHydration`) and triggered from
  * <PlatformChrome> after mount, so SSR never touches localStorage.
  */
