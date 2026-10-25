@@ -432,14 +432,36 @@ export default function CourseArchive({
               {code}
             </h1>
             <p className="mt-1.5 text-base text-fg/60">{title}</p>
-            {activeLangMeta && (
-              <span
-                className="mt-2 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold text-white/90"
-                style={{ backgroundColor: activeLangMeta.color }}
-              >
-                <SectionGlyph name={section!} className="h-3.5 w-3.5" />
-                {section}
-              </span>
+            {isMultiLang && section && isLang(section) && (
+              <div className="mt-3.5 flex items-center gap-2.5">
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-fg/40">Track:</span>
+                <div className="inline-flex items-center rounded-xl border border-fg/10 bg-fg/[0.04] p-1 shadow-inner backdrop-blur-md">
+                  <button
+                    onClick={() => { setSection("Python"); setPath([]); }}
+                    className={cn(
+                      "flex items-center gap-2 rounded-lg px-3 py-1 text-xs font-medium transition-all",
+                      section.toLowerCase() === "python"
+                        ? "border border-fg/10 bg-bg text-fg shadow-soft"
+                        : "text-fg/50 hover:bg-fg/[0.03] hover:text-fg"
+                    )}
+                  >
+                    <img src="/icons/python.png" alt="" className="h-3.5 w-3.5 object-contain" />
+                    <span>Python</span>
+                  </button>
+                  <button
+                    onClick={() => { setSection("Java"); setPath([]); }}
+                    className={cn(
+                      "flex items-center gap-2 rounded-lg px-3 py-1 text-xs font-medium transition-all",
+                      section.toLowerCase() === "java"
+                        ? "border border-fg/10 bg-bg text-fg shadow-soft"
+                        : "text-fg/50 hover:bg-fg/[0.03] hover:text-fg"
+                    )}
+                  >
+                    <img src="/icons/java.png" alt="" className="h-3.5 w-3.5 object-contain" />
+                    <span>Java</span>
+                  </button>
+                </div>
+              </div>
             )}
           </div>
           <div className="flex flex-wrap items-center gap-4">
