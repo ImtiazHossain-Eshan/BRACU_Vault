@@ -25,13 +25,13 @@ function intQuery(c: Context<AppEnv>, name: string, def: number, max: number): n
   return Math.min(n, max);
 }
 
-// GET /api/v1/admin/overview — headline counts
+// GET /api/v1/admin/overview - headline counts
 adminController.get("/admin/overview", async (c) => {
   await requirePermission(c, PERMISSIONS.ANALYTICS_READ);
   return c.json(await service(c).overview());
 });
 
-// GET /api/v1/admin/uploads?status=pending&limit=&offset= — moderation queue (paged)
+// GET /api/v1/admin/uploads?status=pending&limit=&offset= - moderation queue (paged)
 adminController.get("/admin/uploads", async (c) => {
   await requirePermission(c, PERMISSIONS.UPLOADS_MODERATE);
   const status = c.req.query("status") ?? "pending";
@@ -53,7 +53,7 @@ adminController.post("/admin/uploads/:id/:action", async (c) => {
   return c.json({ ok: true, ...(await service(c).moderate(id, action, user.userId)) });
 });
 
-// GET /api/v1/admin/uploads/:id/file — stream the file for moderation preview
+// GET /api/v1/admin/uploads/:id/file - stream the file for moderation preview
 adminController.get("/admin/uploads/:id/file", async (c) => {
   await requirePermission(c, PERMISSIONS.UPLOADS_MODERATE);
   const f = await service(c).getFile(c.req.param("id"));
@@ -65,20 +65,20 @@ adminController.get("/admin/uploads/:id/file", async (c) => {
   });
 });
 
-// POST /api/v1/admin/uploads/:id  { course?, section?, filename? } — edit an upload's metadata
+// POST /api/v1/admin/uploads/:id  { course?, section?, filename? } - edit an upload's metadata
 adminController.post("/admin/uploads/:id", async (c) => {
   const user = await requirePermission(c, PERMISSIONS.UPLOADS_MODERATE);
   const body = (await c.req.json()) as { course?: string | null; section?: string | null; filename?: string };
   return c.json({ ok: true, ...(await service(c).editUpload(c.req.param("id"), body, user.userId)) });
 });
 
-// GET /api/v1/admin/files — all student uploads (archive files are read client-side from the bundle)
+// GET /api/v1/admin/files - all student uploads (archive files are read client-side from the bundle)
 adminController.get("/admin/files", async (c) => {
   await requirePermission(c, PERMISSIONS.UPLOADS_MODERATE);
   return c.json({ uploads: await service(c).listFiles() });
 });
 
-// POST /api/v1/admin/files/override  { p, hidden?, name?, course?, section?, size? } — edit/delete a static archive file
+// POST /api/v1/admin/files/override  { p, hidden?, name?, course?, section?, size? } - edit/delete a static archive file
 adminController.post("/admin/files/override", async (c) => {
   const user = await requirePermission(c, PERMISSIONS.UPLOADS_DELETE);
   const body = (await c.req.json()) as {
@@ -94,7 +94,7 @@ adminController.post("/admin/files/override", async (c) => {
   return c.json({ ok: true, ...(await service(c).setOverride(p, patch, user.userId)) });
 });
 
-// GET /api/v1/admin/users?q=&status=&limit=&offset= — user management list (paged)
+// GET /api/v1/admin/users?q=&status=&limit=&offset= - user management list (paged)
 adminController.get("/admin/users", async (c) => {
   await requirePermission(c, PERMISSIONS.USERS_VERIFY);
   return c.json(
@@ -107,7 +107,7 @@ adminController.get("/admin/users", async (c) => {
   );
 });
 
-// POST /api/v1/admin/users/:id/role  { role } — change a user's role (super admin)
+// POST /api/v1/admin/users/:id/role  { role } - change a user's role (super admin)
 adminController.post("/admin/users/:id/role", async (c) => {
   const actor = await requirePermission(c, PERMISSIONS.ROLES_MANAGE);
   const { role } = (await c.req.json()) as { role?: string };
@@ -115,7 +115,7 @@ adminController.post("/admin/users/:id/role", async (c) => {
   return c.json({ ok: true, ...(await service(c).setRole(c.req.param("id"), role, actor.userId)) });
 });
 
-// POST /api/v1/admin/users/:id/status  { status } — suspend / ban / restore
+// POST /api/v1/admin/users/:id/status  { status } - suspend / ban / restore
 adminController.post("/admin/users/:id/status", async (c) => {
   const actor = await requirePermission(c, PERMISSIONS.USERS_BAN);
   const { status } = (await c.req.json()) as { status?: string };
@@ -123,7 +123,7 @@ adminController.post("/admin/users/:id/status", async (c) => {
   return c.json({ ok: true, ...(await service(c).setStatus(c.req.param("id"), status, actor.userId)) });
 });
 
-// GET /api/v1/admin/audit?limit=&offset= — audit log (paged)
+// GET /api/v1/admin/audit?limit=&offset= - audit log (paged)
 adminController.get("/admin/audit", async (c) => {
   await requirePermission(c, PERMISSIONS.AUDIT_READ);
   return c.json(await service(c).audit(intQuery(c, "limit", 50, 100), intQuery(c, "offset", 0, 100_000)));

@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import { useVaultStore } from "@/store/useVaultStore";
 
-// command palette is client-only and lazy — never blocks first paint
+// command palette is client-only and lazy - never blocks first paint
 const CommandSearch = dynamic(() => import("./CommandSearch"), { ssr: false });
 
 /** Mounted once in the root layout: hydrates the persisted store after mount

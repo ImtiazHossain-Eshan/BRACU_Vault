@@ -18,7 +18,7 @@ database_id = "b3e04cf3-112d-433c-a28e-e9b2f7a434dd"
 bucket_name = "bracu-vault-uploads"
 binding = "bracu_vault_uploads"
 
-# Public archive bucket (files.bracuvault.me) — approved community uploads land here.
+# Public archive bucket (files.bracuvault.me) - approved community uploads land here.
 [[r2_buckets]]
 bucket_name = "bracu-vault-files"
 binding = "bracu_vault_files"
@@ -34,7 +34,7 @@ CLERK_PUBLISHABLE_KEY = "pk_test_cGVhY2VmdWwtbWFydGluLTMwLmNsZXJrLmFjY291bnRzLmR
 
 # Secrets are NOT stored here. Set them with `wrangler secret put <NAME>`:
 #   ROSTER_HMAC_SECRET   CLERK_SECRET_KEY   RESEND_API_KEY   TURNSTILE_SECRET
-# For local dev, put them in .dev.vars (gitignored) — see .dev.vars.example.
+# For local dev, put them in .dev.vars (gitignored) - see .dev.vars.example.
 
 # ── Production (deployed to api.bracuvault.me) ────────────────────────────────
 # Deploy with:  wrangler deploy --env production

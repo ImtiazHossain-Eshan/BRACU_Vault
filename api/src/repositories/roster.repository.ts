@@ -2,7 +2,7 @@ import { eq, sql } from "drizzle-orm";
 import type { Db } from "../db/client";
 import { studentRoster } from "../db/schema";
 
-/** Data access for the student roster. No business logic here — just queries. */
+/** Data access for the student roster. No business logic here - just queries. */
 export class RosterRepository {
   constructor(private readonly db: Db) {}
 
@@ -16,7 +16,7 @@ export class RosterRepository {
     return rows.length > 0;
   }
 
-  /** Total roster size — used by the health check to prove DB wiring. */
+  /** Total roster size - used by the health check to prove DB wiring. */
   async count(): Promise<number> {
     const rows = await this.db
       .select({ c: sql<number>`count(*)` })

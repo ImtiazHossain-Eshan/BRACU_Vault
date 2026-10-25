@@ -69,7 +69,7 @@ for (const fp of files) {
       stdio: "ignore",
       timeout: 180000,
     });
-    // soffice names it <base>.pdf — rename to <originalname>.pdf to avoid collisions.
+    // soffice names it <base>.pdf - rename to <originalname>.pdf to avoid collisions.
     const produced = join(outDir, `${basename(fp, extname(fp))}.pdf`);
     if (existsSync(produced) && produced !== outPdf) renameSync(produced, outPdf);
     if (existsSync(outPdf)) {

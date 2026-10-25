@@ -54,7 +54,7 @@ export const verifyApi = {
   myUploads: (token: string | null) => request<{ uploads: UploadRecord[] }>("/uploads/mine", token),
 };
 
-/** Multipart upload — sent as FormData (do not set Content-Type; the browser
+/** Multipart upload - sent as FormData (do not set Content-Type; the browser
  *  adds the multipart boundary). */
 export async function uploadFile(
   token: string | null,

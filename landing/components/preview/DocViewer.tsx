@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 /**
  * Legacy .doc (Word 97–2003, binary OLE) has no clean browser parser, so this
  * does a best-effort text extraction: decode the stream and keep runs that look
- * like real prose. Not pixel-perfect, but readable — with Open/Download always
+ * like real prose. Not pixel-perfect, but readable - with Open/Download always
  * available in the modal header for the original.
  */
 const cache = new Map<string, string[]>();

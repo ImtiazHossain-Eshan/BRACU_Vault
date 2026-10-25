@@ -9,12 +9,12 @@ import { adminController } from "./controllers/admin.controller";
 import { catalogController } from "./controllers/catalog.controller";
 
 /** Worker entry. Routes are mounted as feature controllers under /api/v1.
- *  Business logic lives in services/repositories — controllers stay thin. */
+ *  Business logic lives in services/repositories - controllers stay thin. */
 const app = new Hono<AppEnv>();
 
 app.onError(onError);
 
-// CORS — allow the static site (dev + prod) to call the API with a Clerk
+// CORS - allow the static site (dev + prod) to call the API with a Clerk
 // Bearer token. Origin is echoed only for the allowlisted hosts.
 app.use("/api/v1/*", cors({
   origin: (origin, c) => {

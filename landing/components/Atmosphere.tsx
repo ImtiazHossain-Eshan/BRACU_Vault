@@ -5,7 +5,7 @@
  *   - dark "Archive": charcoal depth, barely-visible amber/olive washes, film
  *     grain, volumetric light beams, drifting dust, and edge-lit slabs
  *     emerging from shadow.
- * Pure CSS — no JS cost.
+ * Pure CSS - no JS cost.
  */
 const fragments = [
   { top: "18%", left: "8%", w: "8rem", h: "10rem", rotate: "-12deg", delay: "0s" },

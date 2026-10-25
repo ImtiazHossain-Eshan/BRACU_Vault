@@ -47,7 +47,7 @@ export class VerificationRepository {
 
   /**
    * Atomically mark the user verified, record the verification, grant the
-   * verified_student role, and write the audit log — in one D1 batch.
+   * verified_student role, and write the audit log - in one D1 batch.
    * Verification is by university email (Clerk proves ownership), so there is
    * no Student ID here.
    */

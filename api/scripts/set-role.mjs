@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Set a user's role by email (replaces any existing roles). Handy for testing
- * both ends with one login — flip between super_admin and verified_student.
+ * both ends with one login - flip between super_admin and verified_student.
  *
  *   node scripts/set-role.mjs <email> <role> [--remote]
  *

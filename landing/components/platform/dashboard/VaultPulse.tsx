@@ -16,7 +16,7 @@ const tokenOf = (key: string) =>
   TYPE_TOKEN[key as keyof typeof TYPE_TOKEN] ?? "--accent";
 
 /**
- * "Vault pulse" — a segmented donut that draws in on load, with a count-up core
+ * "Vault pulse" - a segmented donut that draws in on load, with a count-up core
  * and hover-to-highlight legend. Replaces the flat progress bars.
  */
 export default function VaultPulse({

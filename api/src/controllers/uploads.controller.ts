@@ -7,7 +7,7 @@ import { PERMISSIONS } from "../policies/rbac";
 import { UploadService } from "../services/upload.service";
 import { Errors } from "../lib/respond";
 
-/** Contribution uploads — gated behind the `uploads.create` permission, which
+/** Contribution uploads - gated behind the `uploads.create` permission, which
  *  only verified students hold. */
 export const uploadsController = new Hono<AppEnv>();
 
@@ -17,7 +17,7 @@ function service(c: Context<AppEnv>) {
   return new UploadService(c.env, getDb(c.env));
 }
 
-// POST /api/v1/uploads — multipart form-data: file, [course], [category]
+// POST /api/v1/uploads - multipart form-data: file, [course], [category]
 uploadsController.post("/uploads", async (c) => {
   const user = await requirePermission(c, PERMISSIONS.UPLOADS_CREATE);
   const form = await c.req.formData();
@@ -34,7 +34,7 @@ uploadsController.post("/uploads", async (c) => {
   return c.json({ ok: true, id: row.id, filename: row.filename, status: row.status }, 201);
 });
 
-// GET /api/v1/uploads/mine — the caller's own uploads
+// GET /api/v1/uploads/mine - the caller's own uploads
 uploadsController.get("/uploads/mine", async (c) => {
   const user = await requirePermission(c, PERMISSIONS.UPLOADS_CREATE);
   const rows = await service(c).list(user.userId);

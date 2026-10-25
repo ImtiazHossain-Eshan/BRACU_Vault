@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import type { OrbitData, OrbitNode } from "@/lib/orbit-layout";
 
-/** Flat version of the orbit — same layout algorithm, no WebGL. */
+/** Flat version of the orbit - same layout algorithm, no WebGL. */
 export default function OrbitFallback2D({
   data,
   selectedCode,

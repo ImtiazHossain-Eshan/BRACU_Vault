@@ -10,7 +10,7 @@ export const catalogController = new Hono<AppEnv>();
 
 const norm = (s: string) => s.toLowerCase().replace(/[\s-]+/g, "");
 
-// GET /api/v1/catalog/uploads?course=CSE260 — approved uploads for one course,
+// GET /api/v1/catalog/uploads?course=CSE260 - approved uploads for one course,
 // shaped like a VaultResource (p is the public files-bucket key).
 catalogController.get("/catalog/uploads", async (c) => {
   const course = (c.req.query("course") ?? "").trim();
@@ -36,7 +36,7 @@ catalogController.get("/catalog/uploads", async (c) => {
   return c.json({ uploads });
 });
 
-// GET /api/v1/catalog/overrides — admin edits/deletes of the static archive files,
+// GET /api/v1/catalog/overrides - admin edits/deletes of the static archive files,
 // applied client-side so the (static) catalog reflects them without a rebuild.
 catalogController.get("/catalog/overrides", async (c) => {
   const rows = await new OverrideRepository(getDb(c.env)).all();

@@ -12,7 +12,7 @@ export interface AuthIdentity {
 
 /**
  * Resolve and require a signed-in Clerk user. Throws 401 if absent. Reads the
- * primary email + its verification status from Clerk — these are the source of
+ * primary email + its verification status from Clerk - these are the source of
  * truth for email ownership (Clerk owns that flow), so the Worker never sees or
  * stores an OTP. Requires `clerkMiddleware()` to have run earlier in the chain.
  */

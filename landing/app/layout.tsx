@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   title: "BRACU Vault: BRAC University CSE Notes, Past Questions & Labs",
   description:
     "13,000+ curated files across 39 courses. Notes, slides, labs, past exams and projects for BRAC University Computer Science, organized the way your degree actually flows.",
-  // Per-page canonical URLs (resolved against metadataBase) — keeps Google from
+  // Per-page canonical URLs (resolved against metadataBase) - keeps Google from
   // splitting rank across www.bracuvault.me and *.pages.dev duplicates.
   alternates: { canonical: "./" },
   keywords: [

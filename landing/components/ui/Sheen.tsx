@@ -1,5 +1,5 @@
 /**
- * A slow diagonal light sweep that crosses a surface on hover — like a
+ * A slow diagonal light sweep that crosses a surface on hover - like a
  * reflection passing over glass/metal. Place inside a `group` container that
  * has `overflow-hidden`. Uses the `--sheen` token so it stays subtle in both
  * themes. Pure CSS transition, no JS.

@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { useRef } from "react";
 import MagneticButton from "./ui/MagneticButton";
 
-// Heavy, client-only canvas — lazy loaded so it never blocks first paint.
+// Heavy, client-only canvas - lazy loaded so it never blocks first paint.
 const ParticleField = dynamic(() => import("./ParticleField"), { ssr: false });
 const VaultCore = dynamic(() => import("./VaultCore"), {
   ssr: false,

@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 /**
- * Registers the service worker (production only — a SW in dev fights HMR).
+ * Registers the service worker (production only - a SW in dev fights HMR).
  * To test locally: `npm run build && npm start`, then open localhost.
  */
 export default function RegisterServiceWorker() {

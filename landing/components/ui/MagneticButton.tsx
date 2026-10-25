@@ -11,7 +11,7 @@ interface MagneticButtonProps {
   className?: string;
 }
 
-/** Button that subtly leans toward the cursor — premium microinteraction. */
+/** Button that subtly leans toward the cursor - premium microinteraction. */
 export default function MagneticButton({
   children,
   href = "#",

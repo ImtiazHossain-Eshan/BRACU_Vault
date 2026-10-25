@@ -5,7 +5,7 @@ import { useMotionValue, useSpring } from "framer-motion";
 /**
  * Pointer-driven parallax. Returns springy normalized motion values in [-1, 1]
  * plus handlers to bind to a container. Decorative layers read `px`/`py` via
- * `useTransform` so depth shifts happen on the compositor — no React re-renders.
+ * `useTransform` so depth shifts happen on the compositor - no React re-renders.
  */
 export function usePointerParallax(enabled = true) {
   const rx = useMotionValue(0);

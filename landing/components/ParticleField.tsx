@@ -3,10 +3,10 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Lightweight "knowledge network" — a 2D-canvas constellation of nodes
+ * Lightweight "knowledge network" - a 2D-canvas constellation of nodes
  * linked by proximity, gently drifting and reacting to the cursor.
  * Colors are pulled from CSS variables, so it reads as neon ink in the dark
- * theme and brown manuscript ink in the light "Paper" theme — and recolors
+ * theme and brown manuscript ink in the light "Paper" theme - and recolors
  * live when the theme is toggled. Density scales with viewport area;
  * honors prefers-reduced-motion; pauses when scrolled out of view.
  */

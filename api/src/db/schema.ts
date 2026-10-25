@@ -97,7 +97,7 @@ export const userRoles = sqliteTable(
   (t) => ({ pk: primaryKey({ columns: [t.userId, t.roleId] }) }),
 );
 
-// ── Roster (source of truth — Student IDs stored as HMAC) ─────────────────────
+// ── Roster (source of truth - Student IDs stored as HMAC) ─────────────────────
 export const rosterImports = sqliteTable("roster_imports", {
   id: text("id").primaryKey(),
   filename: text("filename").notNull(),

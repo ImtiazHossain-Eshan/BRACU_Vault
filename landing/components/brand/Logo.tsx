@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 /* --------------------------------------------------------------------------
- * The mark — an abstract "knowledge vault":
+ * The mark - an abstract "knowledge vault":
  *   - a faceted hexagon (structure · depth · precision); its lower edges
  *     already form a downward V → the Vault.
  *   - two nested chevrons = stacked knowledge / archive layers, converging
@@ -28,7 +28,7 @@ interface MarkColors {
 function toneColors(tone: MarkTone): MarkColors {
   switch (tone) {
     case "brand":
-      // canonical identity — Paper palette
+      // canonical identity - Paper palette
       return { hex: "#4A3A2A", chevron: "#8B6F47", node: "#C2A878" };
     case "cream":
       // monochrome on the brand gradient tile (inherits currentColor)
@@ -43,7 +43,7 @@ interface VaultMarkProps {
   tone?: MarkTone;
   animated?: boolean;
   className?: string;
-  /** restart key — change it to replay the draw-in */
+  /** restart key - change it to replay the draw-in */
   replayKey?: string | number;
 }
 
@@ -77,7 +77,7 @@ export function VaultMark({
       aria-hidden
       {...strokeProps}
     >
-      {/* hexagon — the vault structure */}
+      {/* hexagon - the vault structure */}
       <motion.path
         d={HEX}
         stroke={c.hex}
@@ -87,7 +87,7 @@ export function VaultMark({
         transition={play ? drawTransition(0) : undefined}
         {...strokeProps}
       />
-      {/* nested chevrons — stacked knowledge layers */}
+      {/* nested chevrons - stacked knowledge layers */}
       <motion.path
         d={CHEVRON_OUTER}
         stroke={c.chevron}
@@ -106,7 +106,7 @@ export function VaultMark({
         transition={play ? drawTransition(2) : undefined}
         {...strokeProps}
       />
-      {/* keystone node — the knowledge core */}
+      {/* keystone node - the knowledge core */}
       <motion.circle
         cx={24}
         cy={28}

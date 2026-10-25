@@ -11,7 +11,7 @@ import { cn } from "@/lib/cn";
 import Highlight from "../platform/Highlight";
 
 /** Structure-first directory used on mobile and as the no-WebGL / reduced-motion
- *  fallback — search + category tabs + a fast, flat course list. */
+ *  fallback - search + category tabs + a fast, flat course list. */
 export default function OrbitDirectory({ data }: { data: OrbitData }) {
   const [q, setQ] = useState("");
   const [cat, setCat] = useState<"all" | CategoryId>("all");

@@ -48,7 +48,7 @@ const tabs: Tab[] = [
 ];
 
 /**
- * App-style bottom navigation — mobile only (hidden ≥md). Reflects the active
+ * App-style bottom navigation - mobile only (hidden ≥md). Reflects the active
  * route; "Search" opens the global ⌘K palette via the existing event.
  */
 export default function MobileTabBar() {
